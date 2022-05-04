@@ -1,0 +1,93 @@
+
+
+
+<LoginApp>
+
+MDCard:
+    size_hint: 1, 1
+    size: 720, 1280
+    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+    elevation: 10
+    padding: 65
+    spacing: 35
+    orientation: 'vertical'
+    MDLabel:
+        text: 'labJanssen'
+        color: [1, 0, 0, 1]
+        halign: 'center'
+        font_size: 50
+    MDTextField:
+        jogadora: jogadora
+        id: jogadora
+        hint_text: "Jogador A"
+        foreground_color: 1, 0, 1, 1
+        size_hint_x: None
+        width: 220
+        font_size: 20
+        pos_hint: {"center_x": 0.5}
+        max_text_length: 12
+    MDTextField:
+        jogadorb: jogadorb
+        id: jogadorb
+        hint_text: "Jogador B"
+        foreground_color: 1, 0, 1, 1
+        size_hint_x: None
+        width: 220
+        font_size: 20
+        pos_hint: {"center_x": 0.5}
+        max_text_length: 12
+
+    MDLabel:
+        id: campo
+        halign: "center"
+        text: ' '
+
+    MDRaisedButton:
+        elevation: 50
+        text: "Enviar"
+        font_size: 15
+        pos_hint: {"center_x": 0.5}
+        on_release: app.login()
+
+    MDFloatLayout:
+
+        MDFillRoundFlatButton:
+            id: ini
+            text: "Iniciar"
+            font_size: 15
+            pos_hint: {"center_x": 0.7, "center_y": .3} 
+            md_bg_color: 0, 1, 0, 1
+            text_color: 8, 8, 8   
+            on_release: app.iniciar()
+        MDFillRoundFlatButton:
+            id: res
+            text: "Resetar"
+            font_size: 15
+            pos_hint: {"center_x": 0.3, "center_y": .3}
+            md_bg_color: 1, 0, 0, 1
+            text_color: 8, 8, 8
+            on_release: app.resetar()
+
+    MDRaisedButton:
+        elevation: 30
+        text: "IP setup"
+        font_size: 15
+        pos_hint: {"center_x": 0.5, "center_y": .2}
+        md_bg_color: 1, 0, 1, 1
+        text_color: 8, 8, 8
+        on_release: app.ip_setup()
+
+    MDLabel:
+        id: IPE
+        halign: "center"
+        text: ' '
+
+<ip_dialog>
+    orientation: "vertical"
+    spacing: "12dp"
+    size_hint_y: None
+    height: "120dp"
+
+    MDTextField:
+        id: campo_ip
+        hint_text: "ex: 127.0.0.1"
