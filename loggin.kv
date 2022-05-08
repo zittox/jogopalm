@@ -3,61 +3,77 @@
 
 <LoginApp>
 
-MDCard:
-    size_hint: 1, 1
-    size: 720, 1280
-    pos_hint: {"center_x": 0.5, "center_y": 0.5}
-    elevation: 10
-    padding: 65
-    spacing: 35
+MDBoxLayout:
     orientation: 'vertical'
-    MDLabel:
-        text: 'labJanssen'
-        color: [1, 0, 0, 1]
-        halign: 'center'
-        font_size: 50
-    MDTextField:
-        jogadora: jogadora
-        id: jogadora
-        hint_text: "Jogador A"
-        foreground_color: 1, 0, 1, 1
-        size_hint_x: None
-        width: 220
-        font_size: 20
-        pos_hint: {"center_x": 0.5}
-        max_text_length: 12
-    MDTextField:
-        jogadorb: jogadorb
-        id: jogadorb
-        hint_text: "Jogador B"
-        foreground_color: 1, 0, 1, 1
-        size_hint_x: None
-        width: 220
-        font_size: 20
-        pos_hint: {"center_x": 0.5}
-        max_text_length: 12
-
-    MDLabel:
-        id: campo
-        halign: "center"
-        text: ' '
-
-    MDRaisedButton:
+    halign: 'center'
+    valign: 'top'
+    MDToolbar:
+        adaptative: True
+        title: 'labJanssen'
+        font_style: 'H3'
+        right_action_items: [["information", lambda x: app.info()]]
+        type: "top"
         elevation: 50
-        text: "Enviar"
-        font_size: 15
-        pos_hint: {"center_x": 0.5}
-        on_release: app.login()
+
+
+    MDCard:
+        size_hint: .9, .6
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        radius: [0, 0, 10, 10]
+        radious: dp(25)
+        elevation: 30
+        padding: '15dp'
+        #spacing: '12dp'
+        orientation: 'vertical'
+        MDTextField:
+            jogadora: jogadora
+            id: jogadora
+            hint_text: "Jogador A"
+            foreground_color: 1, 0, 1, 1
+            size_hint_x: None
+            width: 220
+            font_size: 20
+            pos_hint: {"center_x": 0.5}
+            max_text_length: 12
+        MDTextField:
+            jogadorb: jogadorb
+            id: jogadorb
+            hint_text: "Jogador B"
+            foreground_color: 1, 0, 1, 1
+            size_hint_x: None
+            width: 220
+            font_size: 20
+            pos_hint: {"center_x": 0.5}
+            max_text_length: 12
+
+
+        MDRaisedButton:
+            elevation: 50
+            text: "Enviar"
+            font_size: 15
+            pos_hint: {"center_x": 0.5}
+            on_release: app.login()
+
 
     MDFloatLayout:
+        #spacing: '5dp'
+        #padding: '12dp'
+        pos_hint: {'center_x': .5}
+
+        MDLabel:
+            id: campo
+            halign: "center"
+            text: ' '
+            font_size: 30
+            pos_hint: {'center_x': .5, "center_y": .7}
 
         MDFillRoundFlatButton:
             id: ini
             text: "Iniciar"
             font_size: 15
-            pos_hint: {"center_x": 0.7, "center_y": .3} 
+            pos_hint: {"center_x": 0.7, "center_y": .3}
             md_bg_color: 0, 1, 0, 1
-            text_color: 8, 8, 8   
+            text_color: 8, 8, 8
             on_release: app.iniciar()
         MDFillRoundFlatButton:
             id: res
@@ -68,19 +84,21 @@ MDCard:
             text_color: 8, 8, 8
             on_release: app.resetar()
 
-    MDRaisedButton:
-        elevation: 30
-        text: "IP setup"
-        font_size: 15
-        pos_hint: {"center_x": 0.5, "center_y": .2}
-        md_bg_color: 1, 0, 1, 1
-        text_color: 8, 8, 8
-        on_release: app.ip_setup()
 
-    MDLabel:
-        id: IPE
-        halign: "center"
-        text: ' '
+
+
+    MDBottomAppBar:
+
+        MDToolbar:
+            adaptative_hight: True
+            id: IPE
+            title: " "
+            icon: "ip-network"
+            type: "bottom"
+            mode: "center"
+            on_action_button: app.ip_setup()
+
+
 
 <ip_dialog>
     orientation: "vertical"
@@ -89,5 +107,10 @@ MDCard:
     height: "120dp"
 
     MDTextField:
+        campo_ip: campo_ip
         id: campo_ip
         hint_text: "ex: 127.0.0.1"
+    MDTextField:
+        campo_porta: campo_porta
+        id: campo_porta
+        hint_text: "ex: 5000"
